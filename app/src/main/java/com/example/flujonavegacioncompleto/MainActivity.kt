@@ -50,8 +50,8 @@ fun FlujoNavegacionCompleto() {
 
         // Button para pasar a la siguiente pantalla
         Button(onClick = {
-                // Aquí se le indica que SeconActivity es una clase de java, pero porque Java si termina en .kt?
-                val intent = Intent(context, SecondActivity::class.java)
+            // Aquí se le indica que SeconActivity es una clase de java, pero porque Java si termina en .kt?
+            val intent = Intent(context, SecondActivity::class.java)
             context.startActivity(intent)
         }) {
             Text("Ir a la segunda activity")

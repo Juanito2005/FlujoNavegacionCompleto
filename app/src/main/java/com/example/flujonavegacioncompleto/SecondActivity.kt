@@ -1,10 +1,11 @@
 package com.example.flujonavegacioncompleto
 
 import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,14 +20,16 @@ import androidx.compose.ui.platform.LocalContext
 class SecondActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // esta linea se supone que es para que se le permita a esta actividad usar toda la pantalla?
+        enableEdgeToEdge()
         setContent {
-
+            SegundaActividad()
         }
     }
 }
 
 @Composable
-fun SecondActivity() {
+fun SegundaActividad() {
 
     // Tiene que tener un contexto si o si, no? se puede tener el contexto de la primera activity? que pasa si hago eso G?
     val context = LocalContext.current
@@ -40,7 +43,13 @@ fun SecondActivity() {
         Text(text = "This is the second Activity")
 
         Button(onClick = {
-
-        }) { }
+            val intent = Intent(context, ThirdActivity::class.java)
+            // Este es el metodo en si, la linea de arriba es solo para indicar a donde debe ir
+            context.startActivity(intent)
+            // En teoria en esta seccion se puede cambiar el color del botón entre otras cosas, no?
+            // tal vez con: 'colorResource()'?
+        }) {
+            Text("Ir a la tercera activity")
+        }
     }
 }
