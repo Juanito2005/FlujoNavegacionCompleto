@@ -9,16 +9,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.flujonavegacioncompleto.ui.theme.FlujoNavegacionCompletoTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,52 +27,38 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-// Como se visualiza la pantalla?
 
-// Me imagino que el @composable son como los @post/@put/@delete, etc. O sea metodos de Graddle
 @Composable
 fun FlujoNavegacionCompleto() {
     val context = LocalContext.current
-    // Explica mas a fondo pa que es esta linea:
-    // La actividad puede tener como parametro el contexto de otra actividad o de una dato? que se yo, ubicacion, un id, un token, etc
     val activity = (LocalContext.current as? Activity)
 
-    // Se puede tener mas de una sola columna?
     Column(
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Bottom,
-        //Diferencia entre Arragement y alignment
+        verticalArrangement = Arrangement.SpaceAround,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Text(text = "Welcome Rodri to first Camilo's App")
+        Text(text = "Welcome Rodri to first Camilo's App", color = Color.Red)
 
-        // Button para pasar a la siguiente pantalla
+        // Botón para ir a la Segunda Actividad
         Button(onClick = {
-            // Aquí se le indica que SeconActivity es una clase de java, pero porque Java si termina en .kt?
             val intent = Intent(context, SecondActivity::class.java)
             context.startActivity(intent)
         }) {
-            Text("Ir a la segunda activity")
+            Text("Ir a la Segunda Activity")
         }
 
-        // Button para cerrar la app
+        // Botón para cerrar la App
         Button(onClick = {
-            // EL signo "?" es en caso de que no exista activity?
             activity?.finish()
         }) {
             Text("Salir de la App")
         }
-
     }
-
 }
 
-// para que sirve esto? es como una marca de agua?
-/*
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun GreetingPreview() {
-    FlujoNavegacionCompletoTheme {
-        Greeting("Android")
-    }
-}*/
+fun PreviewMainActivity() {
+    FlujoNavegacionCompleto()
+}
